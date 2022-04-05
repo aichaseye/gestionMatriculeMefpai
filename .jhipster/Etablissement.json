@@ -1,0 +1,78 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328150925",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "etablissement",
+  "fields": [
+    {
+      "fieldName": "nomEtab",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "typeEtab",
+      "fieldType": "TypeEtab",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LyceeTechnique,CFP"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutEtab",
+      "fieldValues": "Prive,Publique"
+    },
+    {
+      "fieldName": "latitude",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "longitude",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "matriculeEtab",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Task entity.\\n@author The JHipster team.",
+  "jpaMetamodelFiltering": false,
+  "name": "Etablissement",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "bon",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "bon",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "personnel",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "personnel",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "classe",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "classe",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nomCom",
+      "otherEntityName": "commune",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "commune",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomInsp",
+      "otherEntityName": "inspection",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "inspection",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

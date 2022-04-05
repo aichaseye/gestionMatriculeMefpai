@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="inscription">
+      <h2 data-cy="inscriptionDetailsHeading"><span jhiTranslate="matriculeEfptBdApp.inscription.detail.title">Inscription</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ inscription.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.inscription.anneeIns">Annee Ins</span></dt>
+        <dd>
+          <span>{{ inscription.anneeIns | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.inscription.apprenant">Apprenant</span></dt>
+        <dd>
+          <div *ngIf="inscription.apprenant">
+            <a [routerLink]="['/apprenant', inscription.apprenant?.id, 'view']">{{ inscription.apprenant?.nomCompletApp }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.inscription.classe">Classe</span></dt>
+        <dd>
+          <div *ngIf="inscription.classe">
+            <a [routerLink]="['/classe', inscription.classe?.id, 'view']">{{ inscription.classe?.nomClasse }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/inscription', inscription.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

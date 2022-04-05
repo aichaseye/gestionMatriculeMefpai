@@ -1,0 +1,113 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328151025",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "apprenant",
+  "fields": [
+    {
+      "fieldName": "nomCompletApp",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "The firstname attribute."
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "email": true,
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "lieuNaissance",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numActeNaissance",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Masclin,Feminin"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutApp",
+      "fieldValues": "Prive,Publique"
+    },
+    {
+      "fieldName": "situationMatrimoniale",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "matriculeApp",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationalite",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "The Employee entity.",
+  "jpaMetamodelFiltering": false,
+  "name": "Apprenant",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "dateDemande",
+      "otherEntityName": "demandeMatApp",
+      "otherEntityRelationshipName": "apprenant",
+      "ownerSide": true,
+      "relationshipName": "demandeMatApp",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "inscription",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "inscription",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "releveNote",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "releveNote",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "diplome",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "diplome",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

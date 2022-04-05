@@ -1,0 +1,101 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="apprenant">
+      <h2 data-cy="apprenantDetailsHeading"><span jhiTranslate="matriculeEfptBdApp.apprenant.detail.title">Apprenant</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ apprenant.id }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="matriculeEfptBdApp.apprenant.nomCompletApp"
+            [ngbTooltip]="'matriculeEfptBdApp.apprenant.help.nomCompletApp' | translate"
+            >Nom Complet App</span
+          >
+        </dt>
+        <dd>
+          <span>{{ apprenant.nomCompletApp }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.email">Email</span></dt>
+        <dd>
+          <span>{{ apprenant.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ apprenant.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.dateNaissance">Date Naissance</span></dt>
+        <dd>
+          <span>{{ apprenant.dateNaissance | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.lieuNaissance">Lieu Naissance</span></dt>
+        <dd>
+          <span>{{ apprenant.lieuNaissance }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.numActeNaissance">Num Acte Naissance</span></dt>
+        <dd>
+          <span>{{ apprenant.numActeNaissance }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="apprenant.photo">
+            <a (click)="openFile(apprenant.photo, apprenant.photoContentType)">
+              <img
+                [src]="'data:' + apprenant.photoContentType + ';base64,' + apprenant.photo"
+                style="max-width: 100%"
+                alt="apprenant image"
+              />
+            </a>
+            {{ apprenant.photoContentType }}, {{ byteSize(apprenant.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.sexe">Sexe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'matriculeEfptBdApp.Sexe.' + apprenant.sexe }}">{{ apprenant.sexe }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ apprenant.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.statut">Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'matriculeEfptBdApp.StatutApp.' + apprenant.statut }}">{{ apprenant.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.situationMatrimoniale">Situation Matrimoniale</span></dt>
+        <dd>
+          <span>{{ apprenant.situationMatrimoniale }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.matriculeApp">Matricule App</span></dt>
+        <dd>
+          <span>{{ apprenant.matriculeApp }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.nationalite">Nationalite</span></dt>
+        <dd>
+          <span>{{ apprenant.nationalite }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.apprenant.demandeMatApp">Demande Mat App</span></dt>
+        <dd>
+          <div *ngIf="apprenant.demandeMatApp">
+            <a [routerLink]="['/demande-mat-app', apprenant.demandeMatApp?.id, 'view']">{{ apprenant.demandeMatApp?.dateDemande }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/apprenant', apprenant.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

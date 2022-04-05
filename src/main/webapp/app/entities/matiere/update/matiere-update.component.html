@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-matiere-heading" data-cy="MatiereCreateUpdateHeading" jhiTranslate="matriculeEfptBdApp.matiere.home.createOrEditLabel">
+        Create or edit a Matiere
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.matiere.nomMatiere" for="field_nomMatiere">Nom Matiere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomMatiere"
+            id="field_nomMatiere"
+            data-cy="nomMatiere"
+            formControlName="nomMatiere"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.matiere.reference" for="field_reference">Reference</label>
+          <input type="text" class="form-control" name="reference" id="field_reference" data-cy="reference" formControlName="reference" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.matiere.typeMatiere" for="field_typeMatiere">Type Matiere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeMatiere"
+            id="field_typeMatiere"
+            data-cy="typeMatiere"
+            formControlName="typeMatiere"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.matiere.matriculeMatiere" for="field_matriculeMatiere"
+            >Matricule Matiere</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeMatiere"
+            id="field_matriculeMatiere"
+            data-cy="matriculeMatiere"
+            formControlName="matriculeMatiere"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

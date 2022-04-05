@@ -1,0 +1,30 @@
+{
+  "matriculeEfptBdApp": {
+    "diplome": {
+      "home": {
+        "title": "Diplomes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Diplome",
+        "createOrEditLabel": "Créer ou éditer un Diplome",
+        "notFound": "Aucun Diplome trouvé"
+      },
+      "created": "Un nouveau Diplome a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Diplome avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Diplome avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Diplome {{ id }} ?"
+      },
+      "detail": {
+        "title": "Diplome"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "matriculeDiplome": "Matricule Diplome",
+      "annee": "Annee",
+      "apprenant": "Apprenant",
+      "filiereEtude": "Filiere Etude",
+      "serieEtude": "Serie Etude",
+      "niveauEtude": "Niveau Etude"
+    }
+  }
+}

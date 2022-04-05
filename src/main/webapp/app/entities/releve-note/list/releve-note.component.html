@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="ReleveNoteHeading">
+    <span jhiTranslate="matriculeEfptBdApp.releveNote.home.title">Releve Notes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="matriculeEfptBdApp.releveNote.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-releve-note"
+        [routerLink]="['/releve-note/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="matriculeEfptBdApp.releveNote.home.createLabel"> Create a new Releve Note </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="releveNotes?.length === 0">
+    <span jhiTranslate="matriculeEfptBdApp.releveNote.home.notFound">No releveNotes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="releveNotes && releveNotes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="annee">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.annee">Annee</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="etat">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.etat">Etat</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="apreciation">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.apreciation">Apreciation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="moyenne">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.moyenne">Moyenne</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="moyenneGenerale">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.moyenneGenerale">Moyenne Generale</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rang">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.rang">Rang</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="noteConduite">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.noteConduite">Note Conduite</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="nomSemestre">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.nomSemestre">Nom Semestre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="matriculeRel">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.matriculeRel">Matricule Rel</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="apprenant.nomCompletApp">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.apprenant">Apprenant</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="filiereEtude.filiere">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.filiereEtude">Filiere Etude</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="serieEtude.serie">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.serieEtude">Serie Etude</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="niveauEtude.niveau">
+            <span jhiTranslate="matriculeEfptBdApp.releveNote.niveauEtude">Niveau Etude</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let releveNote of releveNotes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/releve-note', releveNote.id, 'view']">{{ releveNote.id }}</a>
+          </td>
+          <td>{{ releveNote.annee | formatMediumDate }}</td>
+          <td jhiTranslate="{{ 'matriculeEfptBdApp.Etat.' + releveNote.etat }}">{{ releveNote.etat }}</td>
+          <td>{{ releveNote.apreciation }}</td>
+          <td>{{ releveNote.moyenne }}</td>
+          <td>{{ releveNote.moyenneGenerale }}</td>
+          <td>{{ releveNote.rang }}</td>
+          <td>{{ releveNote.noteConduite }}</td>
+          <td jhiTranslate="{{ 'matriculeEfptBdApp.NomSemestre.' + releveNote.nomSemestre }}">{{ releveNote.nomSemestre }}</td>
+          <td>{{ releveNote.matriculeRel }}</td>
+          <td>
+            <div *ngIf="releveNote.apprenant">
+              <a [routerLink]="['/apprenant', releveNote.apprenant?.id, 'view']">{{ releveNote.apprenant?.nomCompletApp }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="releveNote.filiereEtude">
+              <a [routerLink]="['/filiere-etude', releveNote.filiereEtude?.id, 'view']">{{ releveNote.filiereEtude?.filiere }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="releveNote.serieEtude">
+              <a [routerLink]="['/serie-etude', releveNote.serieEtude?.id, 'view']">{{ releveNote.serieEtude?.serie }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="releveNote.niveauEtude">
+              <a [routerLink]="['/niveau-etude', releveNote.niveauEtude?.id, 'view']">{{ releveNote.niveauEtude?.niveau }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/releve-note', releveNote.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/releve-note', releveNote.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(releveNote)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

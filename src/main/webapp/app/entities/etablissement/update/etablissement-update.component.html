@@ -1,0 +1,133 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-etablissement-heading"
+        data-cy="EtablissementCreateUpdateHeading"
+        jhiTranslate="matriculeEfptBdApp.etablissement.home.createOrEditLabel"
+      >
+        Create or edit a Etablissement
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.etablissement.nomEtab" for="field_nomEtab">Nom Etab</label>
+          <input type="text" class="form-control" name="nomEtab" id="field_nomEtab" data-cy="nomEtab" formControlName="nomEtab" />
+          <div *ngIf="editForm.get('nomEtab')!.invalid && (editForm.get('nomEtab')!.dirty || editForm.get('nomEtab')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomEtab')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.etablissement.typeEtab" for="field_typeEtab">Type Etab</label>
+          <select class="form-control" name="typeEtab" formControlName="typeEtab" id="field_typeEtab" data-cy="typeEtab">
+            <option [ngValue]="null">{{ 'matriculeEfptBdApp.TypeEtab.null' | translate }}</option>
+            <option *ngFor="let typeEtab of typeEtabValues" [value]="typeEtab">
+              {{ 'matriculeEfptBdApp.TypeEtab.' + typeEtab | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('typeEtab')!.invalid && (editForm.get('typeEtab')!.dirty || editForm.get('typeEtab')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('typeEtab')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.etablissement.statut" for="field_statut">Statut</label>
+          <select class="form-control" name="statut" formControlName="statut" id="field_statut" data-cy="statut">
+            <option [ngValue]="null">{{ 'matriculeEfptBdApp.StatutEtab.null' | translate }}</option>
+            <option *ngFor="let statutEtab of statutEtabValues" [value]="statutEtab">
+              {{ 'matriculeEfptBdApp.StatutEtab.' + statutEtab | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.etablissement.latitude" for="field_latitude">Latitude</label>
+          <input type="number" class="form-control" name="latitude" id="field_latitude" data-cy="latitude" formControlName="latitude" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.etablissement.longitude" for="field_longitude">Longitude</label>
+          <input type="number" class="form-control" name="longitude" id="field_longitude" data-cy="longitude" formControlName="longitude" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.etablissement.matriculeEtab" for="field_matriculeEtab"
+            >Matricule Etab</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeEtab"
+            id="field_matriculeEtab"
+            data-cy="matriculeEtab"
+            formControlName="matriculeEtab"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.etablissement.commune" for="field_commune">Commune</label>
+          <select class="form-control" id="field_commune" data-cy="commune" name="commune" formControlName="commune">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="communeOption.id === editForm.get('commune')!.value?.id ? editForm.get('commune')!.value : communeOption"
+              *ngFor="let communeOption of communesSharedCollection; trackBy: trackCommuneById"
+            >
+              {{ communeOption.nomCom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.etablissement.inspection" for="field_inspection">Inspection</label>
+          <select class="form-control" id="field_inspection" data-cy="inspection" name="inspection" formControlName="inspection">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                inspectionOption.id === editForm.get('inspection')!.value?.id ? editForm.get('inspection')!.value : inspectionOption
+              "
+              *ngFor="let inspectionOption of inspectionsSharedCollection; trackBy: trackInspectionById"
+            >
+              {{ inspectionOption.nomInsp }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

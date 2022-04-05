@@ -1,0 +1,28 @@
+{
+  "matriculeEfptBdApp": {
+    "bon": {
+      "home": {
+        "title": "Bons",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Bon",
+        "createOrEditLabel": "Créer ou éditer un Bon",
+        "notFound": "Aucun Bon trouvé"
+      },
+      "created": "Un nouveau Bon a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Bon avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Bon avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Bon {{ id }} ?"
+      },
+      "detail": {
+        "title": "Bon"
+      },
+      "id": "ID",
+      "quantite": "Quantite",
+      "date": "Date",
+      "description": "Description",
+      "etablissement": "Etablissement",
+      "matiere": "Matiere"
+    }
+  }
+}

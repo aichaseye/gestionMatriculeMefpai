@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-note-programme-heading"
+        data-cy="NoteProgrammeCreateUpdateHeading"
+        jhiTranslate="matriculeEfptBdApp.noteProgramme.home.createOrEditLabel"
+      >
+        Create or edit a Note Programme
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.noteProgramme.nomProg" for="field_nomProg">Nom Prog</label>
+          <input type="text" class="form-control" name="nomProg" id="field_nomProg" data-cy="nomProg" formControlName="nomProg" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.noteProgramme.coef" for="field_coef">Coef</label>
+          <input type="number" class="form-control" name="coef" id="field_coef" data-cy="coef" formControlName="coef" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.noteProgramme.note" for="field_note">Note</label>
+          <input type="number" class="form-control" name="note" id="field_note" data-cy="note" formControlName="note" />
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="matriculeEfptBdApp.noteProgramme.releveNote" for="field_releveNotes">Releve Note</label>
+          <select
+            class="form-control"
+            id="field_releveNotes"
+            data-cy="releveNote"
+            multiple
+            name="releveNotes"
+            formControlName="releveNotes"
+          >
+            <option
+              [ngValue]="getSelectedReleveNote(releveNoteOption, editForm.get('releveNotes')!.value)"
+              *ngFor="let releveNoteOption of releveNotesSharedCollection; trackBy: trackReleveNoteById"
+            >
+              {{ releveNoteOption.moyenne }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

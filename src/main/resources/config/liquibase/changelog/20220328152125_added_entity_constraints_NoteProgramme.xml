@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity NoteProgramme.
+    -->
+    <changeSet id="20220328152125-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="note_programme_id"
+                                 baseTableName="rel_note_programme__releve_note"
+                                 constraintName="fk_rel_note_programme__releve_note__note_programme_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="note_programme"/>
+
+        <addForeignKeyConstraint baseColumnNames="releve_note_id"
+                                 baseTableName="rel_note_programme__releve_note"
+                                 constraintName="fk_rel_note_programme__releve_note__releve_note_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="releve_note"/>
+    </changeSet>
+</databaseChangeLog>

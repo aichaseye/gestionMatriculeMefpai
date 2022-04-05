@@ -1,0 +1,37 @@
+{
+  "matriculeEfptBdApp": {
+    "releveNote": {
+      "home": {
+        "title": "Releve Notes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Releve Note",
+        "createOrEditLabel": "Create or edit a Releve Note",
+        "notFound": "No Releve Notes found"
+      },
+      "created": "A new Releve Note is created with identifier {{ param }}",
+      "updated": "A Releve Note is updated with identifier {{ param }}",
+      "deleted": "A Releve Note is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Releve Note {{ id }}?"
+      },
+      "detail": {
+        "title": "Releve Note"
+      },
+      "id": "ID",
+      "annee": "Annee",
+      "etat": "Etat",
+      "apreciation": "Apreciation",
+      "moyenne": "Moyenne",
+      "moyenneGenerale": "Moyenne Generale",
+      "rang": "Rang",
+      "noteConduite": "Note Conduite",
+      "nomSemestre": "Nom Semestre",
+      "matriculeRel": "Matricule Rel",
+      "apprenant": "Apprenant",
+      "filiereEtude": "Filiere Etude",
+      "serieEtude": "Serie Etude",
+      "niveauEtude": "Niveau Etude",
+      "noteProgramme": "Note Programme"
+    }
+  }
+}

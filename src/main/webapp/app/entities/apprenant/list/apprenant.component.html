@@ -1,0 +1,146 @@
+<div>
+  <h2 id="page-heading" data-cy="ApprenantHeading">
+    <span jhiTranslate="matriculeEfptBdApp.apprenant.home.title">Apprenants</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="matriculeEfptBdApp.apprenant.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-apprenant"
+        [routerLink]="['/apprenant/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="matriculeEfptBdApp.apprenant.home.createLabel"> Create a new Apprenant </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="apprenants?.length === 0">
+    <span jhiTranslate="matriculeEfptBdApp.apprenant.home.notFound">No apprenants found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="apprenants && apprenants.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomCompletApp">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.nomCompletApp">Nom Complet App</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="telephone">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateNaissance">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.dateNaissance">Date Naissance</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lieuNaissance">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.lieuNaissance">Lieu Naissance</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="numActeNaissance">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.numActeNaissance">Num Acte Naissance</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="photo">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.photo">Photo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sexe">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.sexe">Sexe</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="adresse">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.adresse">Adresse</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="statut">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.statut">Statut</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="situationMatrimoniale">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.situationMatrimoniale">Situation Matrimoniale</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="matriculeApp">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.matriculeApp">Matricule App</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="nationalite">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.nationalite">Nationalite</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="demandeMatApp.dateDemande">
+            <span jhiTranslate="matriculeEfptBdApp.apprenant.demandeMatApp">Demande Mat App</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let apprenant of apprenants; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/apprenant', apprenant.id, 'view']">{{ apprenant.id }}</a>
+          </td>
+          <td>{{ apprenant.nomCompletApp }}</td>
+          <td>{{ apprenant.email }}</td>
+          <td>{{ apprenant.telephone }}</td>
+          <td>{{ apprenant.dateNaissance | formatMediumDate }}</td>
+          <td>{{ apprenant.lieuNaissance }}</td>
+          <td>{{ apprenant.numActeNaissance }}</td>
+          <td>
+            <a *ngIf="apprenant.photo" (click)="openFile(apprenant.photo, apprenant.photoContentType)">
+              <img
+                [src]="'data:' + apprenant.photoContentType + ';base64,' + apprenant.photo"
+                style="max-height: 30px"
+                alt="apprenant image"
+              />
+            </a>
+            <span *ngIf="apprenant.photo">{{ apprenant.photoContentType }}, {{ byteSize(apprenant.photo) }}</span>
+          </td>
+          <td jhiTranslate="{{ 'matriculeEfptBdApp.Sexe.' + apprenant.sexe }}">{{ apprenant.sexe }}</td>
+          <td>{{ apprenant.adresse }}</td>
+          <td jhiTranslate="{{ 'matriculeEfptBdApp.StatutApp.' + apprenant.statut }}">{{ apprenant.statut }}</td>
+          <td>{{ apprenant.situationMatrimoniale }}</td>
+          <td>{{ apprenant.matriculeApp }}</td>
+          <td>{{ apprenant.nationalite }}</td>
+          <td>
+            <div *ngIf="apprenant.demandeMatApp">
+              <a [routerLink]="['/demande-mat-app', apprenant.demandeMatApp?.id, 'view']">{{ apprenant.demandeMatApp?.dateDemande }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/apprenant', apprenant.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/apprenant', apprenant.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(apprenant)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

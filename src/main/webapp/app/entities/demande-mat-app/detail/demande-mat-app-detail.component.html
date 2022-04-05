@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeMatApp">
+      <h2 data-cy="demandeMatAppDetailsHeading">
+        <span jhiTranslate="matriculeEfptBdApp.demandeMatApp.detail.title">Demande Mat App</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ demandeMatApp.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.demandeMatApp.objet">Objet</span></dt>
+        <dd>
+          <span>{{ demandeMatApp.objet }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.demandeMatApp.description">Description</span></dt>
+        <dd>
+          <span>{{ demandeMatApp.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.demandeMatApp.dateDemande">Date Demande</span></dt>
+        <dd>
+          <span>{{ demandeMatApp.dateDemande | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-mat-app', demandeMatApp.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

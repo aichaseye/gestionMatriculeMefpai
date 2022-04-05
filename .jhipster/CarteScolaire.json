@@ -1,0 +1,51 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328151525",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "carte_scolaire",
+  "fields": [
+    {
+      "fieldName": "longuer",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "largeur",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dureeValidite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateCreation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateFin",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "matriculeCart",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CarteScolaire",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomCompletApp",
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "carteScolaire",
+      "ownerSide": true,
+      "relationshipName": "apprenant",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

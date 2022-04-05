@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="releveNote">
+      <h2 data-cy="releveNoteDetailsHeading"><span jhiTranslate="matriculeEfptBdApp.releveNote.detail.title">Releve Note</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ releveNote.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.annee">Annee</span></dt>
+        <dd>
+          <span>{{ releveNote.annee | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.etat">Etat</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'matriculeEfptBdApp.Etat.' + releveNote.etat }}">{{ releveNote.etat }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.apreciation">Apreciation</span></dt>
+        <dd>
+          <span>{{ releveNote.apreciation }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.moyenne">Moyenne</span></dt>
+        <dd>
+          <span>{{ releveNote.moyenne }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.moyenneGenerale">Moyenne Generale</span></dt>
+        <dd>
+          <span>{{ releveNote.moyenneGenerale }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.rang">Rang</span></dt>
+        <dd>
+          <span>{{ releveNote.rang }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.noteConduite">Note Conduite</span></dt>
+        <dd>
+          <span>{{ releveNote.noteConduite }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.nomSemestre">Nom Semestre</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'matriculeEfptBdApp.NomSemestre.' + releveNote.nomSemestre }}">{{ releveNote.nomSemestre }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.matriculeRel">Matricule Rel</span></dt>
+        <dd>
+          <span>{{ releveNote.matriculeRel }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.apprenant">Apprenant</span></dt>
+        <dd>
+          <div *ngIf="releveNote.apprenant">
+            <a [routerLink]="['/apprenant', releveNote.apprenant?.id, 'view']">{{ releveNote.apprenant?.nomCompletApp }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.filiereEtude">Filiere Etude</span></dt>
+        <dd>
+          <div *ngIf="releveNote.filiereEtude">
+            <a [routerLink]="['/filiere-etude', releveNote.filiereEtude?.id, 'view']">{{ releveNote.filiereEtude?.filiere }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.serieEtude">Serie Etude</span></dt>
+        <dd>
+          <div *ngIf="releveNote.serieEtude">
+            <a [routerLink]="['/serie-etude', releveNote.serieEtude?.id, 'view']">{{ releveNote.serieEtude?.serie }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.releveNote.niveauEtude">Niveau Etude</span></dt>
+        <dd>
+          <div *ngIf="releveNote.niveauEtude">
+            <a [routerLink]="['/niveau-etude', releveNote.niveauEtude?.id, 'view']">{{ releveNote.niveauEtude?.niveau }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/releve-note', releveNote.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="personnel">
+      <h2 data-cy="personnelDetailsHeading"><span jhiTranslate="matriculeEfptBdApp.personnel.detail.title">Personnel</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ personnel.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="matriculeEfptBdApp.personnel.nomPers" [ngbTooltip]="'matriculeEfptBdApp.personnel.help.nomPers' | translate"
+            >Nom Pers</span
+          >
+        </dt>
+        <dd>
+          <span>{{ personnel.nomPers }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.personnel.prenomPers">Prenom Pers</span></dt>
+        <dd>
+          <span>{{ personnel.prenomPers }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.personnel.email">Email</span></dt>
+        <dd>
+          <span>{{ personnel.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.personnel.etablissement">Etablissement</span></dt>
+        <dd>
+          <div *ngIf="personnel.etablissement">
+            <a [routerLink]="['/etablissement', personnel.etablissement?.id, 'view']">{{ personnel.etablissement?.nomEtab }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.personnel.inspection">Inspection</span></dt>
+        <dd>
+          <div *ngIf="personnel.inspection">
+            <a [routerLink]="['/inspection', personnel.inspection?.id, 'view']">{{ personnel.inspection?.nomInsp }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.personnel.poste">Poste</span></dt>
+        <dd>
+          <div *ngIf="personnel.poste">
+            <a [routerLink]="['/poste', personnel.poste?.id, 'view']">{{ personnel.poste?.nomPoste }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/personnel', personnel.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

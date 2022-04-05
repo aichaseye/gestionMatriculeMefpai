@@ -1,0 +1,26 @@
+{
+  "matriculeEfptBdApp": {
+    "serieEtude": {
+      "home": {
+        "title": "SerieEtudes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Serie Etude",
+        "createOrEditLabel": "Créer ou éditer un Serie Etude",
+        "notFound": "Aucun Serie Etude trouvé"
+      },
+      "created": "Un nouveau Serie Etude a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Serie Etude avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Serie Etude avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Serie Etude {{ id }} ?"
+      },
+      "detail": {
+        "title": "Serie Etude"
+      },
+      "id": "ID",
+      "serie": "Serie",
+      "diplome": "Diplome",
+      "releveNote": "Releve Note"
+    }
+  }
+}

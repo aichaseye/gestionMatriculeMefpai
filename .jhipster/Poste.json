@@ -1,0 +1,29 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328151325",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "poste",
+  "fields": [
+    {
+      "fieldName": "nomPoste",
+      "fieldType": "NomPoste",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Comptable_matiere,Proviseur,Chef_traveaux,BEFPA,Admin,Directeur,Surveillant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Poste",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "personnel",
+      "otherEntityRelationshipName": "poste",
+      "relationshipName": "personnel",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

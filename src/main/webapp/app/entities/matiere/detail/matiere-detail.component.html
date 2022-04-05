@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="matiere">
+      <h2 data-cy="matiereDetailsHeading"><span jhiTranslate="matriculeEfptBdApp.matiere.detail.title">Matiere</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ matiere.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.matiere.nomMatiere">Nom Matiere</span></dt>
+        <dd>
+          <span>{{ matiere.nomMatiere }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.matiere.reference">Reference</span></dt>
+        <dd>
+          <span>{{ matiere.reference }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.matiere.typeMatiere">Type Matiere</span></dt>
+        <dd>
+          <span>{{ matiere.typeMatiere }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.matiere.matriculeMatiere">Matricule Matiere</span></dt>
+        <dd>
+          <span>{{ matiere.matriculeMatiere }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/matiere', matiere.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

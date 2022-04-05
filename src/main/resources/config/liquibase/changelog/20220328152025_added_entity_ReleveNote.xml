@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity ReleveNote.
+    -->
+    <changeSet id="20220328152025-1" author="jhipster">
+        <createTable tableName="releve_note">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="annee" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="etat" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="apreciation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="moyenne" type="${floatType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="moyenne_generale" type="${floatType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="rang" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="note_conduite" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="nom_semestre" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="matricule_rel" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="apprenant_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="filiere_etude_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="serie_etude_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="niveau_etude_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220328152025-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/releve_note.csv"
+                  separator=";"
+                  tableName="releve_note"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="annee" type="date"/>
+            <column name="etat" type="string"/>
+            <column name="apreciation" type="string"/>
+            <column name="moyenne" type="numeric"/>
+            <column name="moyenne_generale" type="numeric"/>
+            <column name="rang" type="string"/>
+            <column name="note_conduite" type="numeric"/>
+            <column name="nom_semestre" type="string"/>
+            <column name="matricule_rel" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

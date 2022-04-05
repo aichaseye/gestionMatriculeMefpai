@@ -1,0 +1,58 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328151225",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "personnel",
+  "fields": [
+    {
+      "fieldName": "nomPers",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "The firstname attribute."
+    },
+    {
+      "fieldName": "prenomPers",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "email": true,
+        "unique": true
+      }
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Personnel",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomEtab",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "personnel",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomInsp",
+      "otherEntityName": "inspection",
+      "otherEntityRelationshipName": "personnel",
+      "relationshipName": "inspection",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomPoste",
+      "otherEntityName": "poste",
+      "otherEntityRelationshipName": "personnel",
+      "relationshipName": "poste",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

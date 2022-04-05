@@ -1,0 +1,9 @@
+{
+  "matriculeEfptBdApp": {
+    "Sexe": {
+      "null": "",
+      "Masclin": "Masclin",
+      "Feminin": "Feminin"
+    }
+  }
+}

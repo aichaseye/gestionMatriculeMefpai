@@ -1,0 +1,28 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328152225",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "demande_mat_app",
+  "fields": [
+    {
+      "fieldName": "objet",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateDemande",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DemandeMatApp",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

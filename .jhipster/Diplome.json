@@ -1,0 +1,60 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328151625",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "diplome",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "NomDiplome",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CAP,BTS,BT,CPS,BEP,CQP,TS,METP,BTI,TitreProfessionnel,CAEP"
+    },
+    {
+      "fieldName": "matriculeDiplome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "annee",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Diplome",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomCompletApp",
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "apprenant",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "filiere",
+      "otherEntityName": "filiereEtude",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "filiereEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "serie",
+      "otherEntityName": "serieEtude",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "serieEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "niveau",
+      "otherEntityName": "niveauEtude",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "niveauEtude",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,26 @@
+{
+  "matriculeEfptBdApp": {
+    "classe": {
+      "home": {
+        "title": "Classes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Classe",
+        "createOrEditLabel": "Créer ou éditer un Classe",
+        "notFound": "Aucun Classe trouvé"
+      },
+      "created": "Un nouveau Classe a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Classe avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Classe avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Classe {{ id }} ?"
+      },
+      "detail": {
+        "title": "Classe"
+      },
+      "id": "ID",
+      "nomClasse": "Nom Classe",
+      "inscription": "Inscription",
+      "etablissement": "Etablissement"
+    }
+  }
+}

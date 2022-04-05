@@ -1,0 +1,37 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328152125",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "note_programme",
+  "fields": [
+    {
+      "fieldName": "nomProg",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "coef",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "NoteProgramme",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "moyenne",
+      "otherEntityName": "releveNote",
+      "otherEntityRelationshipName": "noteProgramme",
+      "ownerSide": true,
+      "relationshipName": "releveNote",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

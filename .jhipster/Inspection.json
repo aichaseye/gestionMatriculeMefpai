@@ -1,0 +1,56 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328150825",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "inspection",
+  "fields": [
+    {
+      "fieldName": "nomInsp",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "typeInsp",
+      "fieldType": "TypeInspection",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "IA,IEF"
+    },
+    {
+      "fieldName": "latitude",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "longitude",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "not an ignored comment",
+  "jpaMetamodelFiltering": false,
+  "name": "Inspection",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "personnel",
+      "otherEntityRelationshipName": "inspection",
+      "relationshipName": "personnel",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "inspection",
+      "relationshipName": "etablissement",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nomCom",
+      "otherEntityName": "commune",
+      "otherEntityRelationshipName": "inspection",
+      "relationshipName": "commune",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

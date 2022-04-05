@@ -1,0 +1,45 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328152425",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "matiere",
+  "fields": [
+    {
+      "fieldName": "nomMatiere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reference",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeMatiere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "matriculeMatiere",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Matiere",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "bon",
+      "otherEntityRelationshipName": "matiere",
+      "relationshipName": "bon",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "image",
+      "otherEntityRelationshipName": "matiere",
+      "relationshipName": "image",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

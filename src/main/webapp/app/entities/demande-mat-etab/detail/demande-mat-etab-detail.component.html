@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeMatEtab">
+      <h2 data-cy="demandeMatEtabDetailsHeading">
+        <span jhiTranslate="matriculeEfptBdApp.demandeMatEtab.detail.title">Demande Mat Etab</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.demandeMatEtab.objet">Objet</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.objet }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.demandeMatEtab.description">Description</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.demandeMatEtab.dateDemande">Date Demande</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.dateDemande | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.demandeMatEtab.etablissement">Etablissement</span></dt>
+        <dd>
+          <div *ngIf="demandeMatEtab.etablissement">
+            <a [routerLink]="['/etablissement', demandeMatEtab.etablissement?.id, 'view']">{{ demandeMatEtab.etablissement?.nomEtab }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-mat-etab', demandeMatEtab.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

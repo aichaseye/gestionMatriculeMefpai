@@ -1,0 +1,26 @@
+{
+  "matriculeEfptBdApp": {
+    "niveauEtude": {
+      "home": {
+        "title": "NiveauEtudes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Niveau Etude",
+        "createOrEditLabel": "Créer ou éditer un Niveau Etude",
+        "notFound": "Aucun Niveau Etude trouvé"
+      },
+      "created": "Un nouveau Niveau Etude a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Niveau Etude avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Niveau Etude avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Niveau Etude {{ id }} ?"
+      },
+      "detail": {
+        "title": "Niveau Etude"
+      },
+      "id": "ID",
+      "niveau": "Niveau",
+      "diplome": "Diplome",
+      "releveNote": "Releve Note"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="inspection">
+      <h2 data-cy="inspectionDetailsHeading"><span jhiTranslate="matriculeEfptBdApp.inspection.detail.title">Inspection</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ inspection.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.inspection.nomInsp">Nom Insp</span></dt>
+        <dd>
+          <span>{{ inspection.nomInsp }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.inspection.typeInsp">Type Insp</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'matriculeEfptBdApp.TypeInspection.' + inspection.typeInsp }}">{{ inspection.typeInsp }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.inspection.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ inspection.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.inspection.longitude">Longitude</span></dt>
+        <dd>
+          <span>{{ inspection.longitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.inspection.commune">Commune</span></dt>
+        <dd>
+          <div *ngIf="inspection.commune">
+            <a [routerLink]="['/commune', inspection.commune?.id, 'view']">{{ inspection.commune?.nomCom }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/inspection', inspection.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

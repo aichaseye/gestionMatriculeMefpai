@@ -1,0 +1,27 @@
+{
+  "matriculeEfptBdApp": {
+    "noteProgramme": {
+      "home": {
+        "title": "NoteProgrammes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Note Programme",
+        "createOrEditLabel": "Créer ou éditer un Note Programme",
+        "notFound": "Aucun Note Programme trouvé"
+      },
+      "created": "Un nouveau Note Programme a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Note Programme avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Note Programme avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Note Programme {{ id }} ?"
+      },
+      "detail": {
+        "title": "Note Programme"
+      },
+      "id": "ID",
+      "nomProg": "Nom Prog",
+      "coef": "Coef",
+      "note": "Note",
+      "releveNote": "Releve Note"
+    }
+  }
+}

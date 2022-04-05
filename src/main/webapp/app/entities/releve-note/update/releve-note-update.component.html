@@ -1,0 +1,217 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-releve-note-heading"
+        data-cy="ReleveNoteCreateUpdateHeading"
+        jhiTranslate="matriculeEfptBdApp.releveNote.home.createOrEditLabel"
+      >
+        Create or edit a Releve Note
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.annee" for="field_annee">Annee</label>
+          <div class="input-group">
+            <input
+              id="field_annee"
+              data-cy="annee"
+              type="text"
+              class="form-control"
+              name="annee"
+              ngbDatepicker
+              #anneeDp="ngbDatepicker"
+              formControlName="annee"
+            />
+            <button type="button" class="btn btn-secondary" (click)="anneeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('annee')!.invalid && (editForm.get('annee')!.dirty || editForm.get('annee')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('annee')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.etat" for="field_etat">Etat</label>
+          <select class="form-control" name="etat" formControlName="etat" id="field_etat" data-cy="etat">
+            <option [ngValue]="null">{{ 'matriculeEfptBdApp.Etat.null' | translate }}</option>
+            <option *ngFor="let etat of etatValues" [value]="etat">{{ 'matriculeEfptBdApp.Etat.' + etat | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('etat')!.invalid && (editForm.get('etat')!.dirty || editForm.get('etat')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('etat')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.apreciation" for="field_apreciation">Apreciation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="apreciation"
+            id="field_apreciation"
+            data-cy="apreciation"
+            formControlName="apreciation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.moyenne" for="field_moyenne">Moyenne</label>
+          <input type="number" class="form-control" name="moyenne" id="field_moyenne" data-cy="moyenne" formControlName="moyenne" />
+          <div *ngIf="editForm.get('moyenne')!.invalid && (editForm.get('moyenne')!.dirty || editForm.get('moyenne')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('moyenne')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('moyenne')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.moyenneGenerale" for="field_moyenneGenerale"
+            >Moyenne Generale</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="moyenneGenerale"
+            id="field_moyenneGenerale"
+            data-cy="moyenneGenerale"
+            formControlName="moyenneGenerale"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.rang" for="field_rang">Rang</label>
+          <input type="text" class="form-control" name="rang" id="field_rang" data-cy="rang" formControlName="rang" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.noteConduite" for="field_noteConduite">Note Conduite</label>
+          <input
+            type="number"
+            class="form-control"
+            name="noteConduite"
+            id="field_noteConduite"
+            data-cy="noteConduite"
+            formControlName="noteConduite"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.nomSemestre" for="field_nomSemestre">Nom Semestre</label>
+          <select class="form-control" name="nomSemestre" formControlName="nomSemestre" id="field_nomSemestre" data-cy="nomSemestre">
+            <option [ngValue]="null">{{ 'matriculeEfptBdApp.NomSemestre.null' | translate }}</option>
+            <option *ngFor="let nomSemestre of nomSemestreValues" [value]="nomSemestre">
+              {{ 'matriculeEfptBdApp.NomSemestre.' + nomSemestre | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.matriculeRel" for="field_matriculeRel">Matricule Rel</label>
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeRel"
+            id="field_matriculeRel"
+            data-cy="matriculeRel"
+            formControlName="matriculeRel"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.apprenant" for="field_apprenant">Apprenant</label>
+          <select class="form-control" id="field_apprenant" data-cy="apprenant" name="apprenant" formControlName="apprenant">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="apprenantOption.id === editForm.get('apprenant')!.value?.id ? editForm.get('apprenant')!.value : apprenantOption"
+              *ngFor="let apprenantOption of apprenantsSharedCollection; trackBy: trackApprenantById"
+            >
+              {{ apprenantOption.nomCompletApp }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.filiereEtude" for="field_filiereEtude">Filiere Etude</label>
+          <select class="form-control" id="field_filiereEtude" data-cy="filiereEtude" name="filiereEtude" formControlName="filiereEtude">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                filiereEtudeOption.id === editForm.get('filiereEtude')!.value?.id ? editForm.get('filiereEtude')!.value : filiereEtudeOption
+              "
+              *ngFor="let filiereEtudeOption of filiereEtudesSharedCollection; trackBy: trackFiliereEtudeById"
+            >
+              {{ filiereEtudeOption.filiere }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.serieEtude" for="field_serieEtude">Serie Etude</label>
+          <select class="form-control" id="field_serieEtude" data-cy="serieEtude" name="serieEtude" formControlName="serieEtude">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                serieEtudeOption.id === editForm.get('serieEtude')!.value?.id ? editForm.get('serieEtude')!.value : serieEtudeOption
+              "
+              *ngFor="let serieEtudeOption of serieEtudesSharedCollection; trackBy: trackSerieEtudeById"
+            >
+              {{ serieEtudeOption.serie }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.releveNote.niveauEtude" for="field_niveauEtude">Niveau Etude</label>
+          <select class="form-control" id="field_niveauEtude" data-cy="niveauEtude" name="niveauEtude" formControlName="niveauEtude">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                niveauEtudeOption.id === editForm.get('niveauEtude')!.value?.id ? editForm.get('niveauEtude')!.value : niveauEtudeOption
+              "
+              *ngFor="let niveauEtudeOption of niveauEtudesSharedCollection; trackBy: trackNiveauEtudeById"
+            >
+              {{ niveauEtudeOption.niveau }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

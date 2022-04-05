@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="carteScolaire">
+      <h2 data-cy="carteScolaireDetailsHeading">
+        <span jhiTranslate="matriculeEfptBdApp.carteScolaire.detail.title">Carte Scolaire</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ carteScolaire.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.carteScolaire.longuer">Longuer</span></dt>
+        <dd>
+          <span>{{ carteScolaire.longuer }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.carteScolaire.largeur">Largeur</span></dt>
+        <dd>
+          <span>{{ carteScolaire.largeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.carteScolaire.dureeValidite">Duree Validite</span></dt>
+        <dd>
+          <span>{{ carteScolaire.dureeValidite }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.carteScolaire.dateCreation">Date Creation</span></dt>
+        <dd>
+          <span>{{ carteScolaire.dateCreation | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.carteScolaire.dateFin">Date Fin</span></dt>
+        <dd>
+          <span>{{ carteScolaire.dateFin | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.carteScolaire.matriculeCart">Matricule Cart</span></dt>
+        <dd>
+          <span>{{ carteScolaire.matriculeCart }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.carteScolaire.apprenant">Apprenant</span></dt>
+        <dd>
+          <div *ngIf="carteScolaire.apprenant">
+            <a [routerLink]="['/apprenant', carteScolaire.apprenant?.id, 'view']">{{ carteScolaire.apprenant?.nomCompletApp }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/carte-scolaire', carteScolaire.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

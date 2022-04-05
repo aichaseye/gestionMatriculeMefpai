@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etablissement">
+      <h2 data-cy="etablissementDetailsHeading"><span jhiTranslate="matriculeEfptBdApp.etablissement.detail.title">Etablissement</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ etablissement.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.etablissement.nomEtab">Nom Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.nomEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.etablissement.typeEtab">Type Etab</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'matriculeEfptBdApp.TypeEtab.' + etablissement.typeEtab }}">{{ etablissement.typeEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.etablissement.statut">Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'matriculeEfptBdApp.StatutEtab.' + etablissement.statut }}">{{ etablissement.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.etablissement.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ etablissement.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.etablissement.longitude">Longitude</span></dt>
+        <dd>
+          <span>{{ etablissement.longitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.etablissement.matriculeEtab">Matricule Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.matriculeEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.etablissement.commune">Commune</span></dt>
+        <dd>
+          <div *ngIf="etablissement.commune">
+            <a [routerLink]="['/commune', etablissement.commune?.id, 'view']">{{ etablissement.commune?.nomCom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.etablissement.inspection">Inspection</span></dt>
+        <dd>
+          <div *ngIf="etablissement.inspection">
+            <a [routerLink]="['/inspection', etablissement.inspection?.id, 'view']">{{ etablissement.inspection?.nomInsp }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etablissement', etablissement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,152 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-diplome-heading" data-cy="DiplomeCreateUpdateHeading" jhiTranslate="matriculeEfptBdApp.diplome.home.createOrEditLabel">
+        Create or edit a Diplome
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.diplome.nom" for="field_nom">Nom</label>
+          <select class="form-control" name="nom" formControlName="nom" id="field_nom" data-cy="nom">
+            <option [ngValue]="null">{{ 'matriculeEfptBdApp.NomDiplome.null' | translate }}</option>
+            <option *ngFor="let nomDiplome of nomDiplomeValues" [value]="nomDiplome">
+              {{ 'matriculeEfptBdApp.NomDiplome.' + nomDiplome | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.diplome.matriculeDiplome" for="field_matriculeDiplome"
+            >Matricule Diplome</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeDiplome"
+            id="field_matriculeDiplome"
+            data-cy="matriculeDiplome"
+            formControlName="matriculeDiplome"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculeDiplome')!.invalid &&
+              (editForm.get('matriculeDiplome')!.dirty || editForm.get('matriculeDiplome')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculeDiplome')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.diplome.annee" for="field_annee">Annee</label>
+          <div class="input-group">
+            <input
+              id="field_annee"
+              data-cy="annee"
+              type="text"
+              class="form-control"
+              name="annee"
+              ngbDatepicker
+              #anneeDp="ngbDatepicker"
+              formControlName="annee"
+            />
+            <button type="button" class="btn btn-secondary" (click)="anneeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.diplome.apprenant" for="field_apprenant">Apprenant</label>
+          <select class="form-control" id="field_apprenant" data-cy="apprenant" name="apprenant" formControlName="apprenant">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="apprenantOption.id === editForm.get('apprenant')!.value?.id ? editForm.get('apprenant')!.value : apprenantOption"
+              *ngFor="let apprenantOption of apprenantsSharedCollection; trackBy: trackApprenantById"
+            >
+              {{ apprenantOption.nomCompletApp }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.diplome.filiereEtude" for="field_filiereEtude">Filiere Etude</label>
+          <select class="form-control" id="field_filiereEtude" data-cy="filiereEtude" name="filiereEtude" formControlName="filiereEtude">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                filiereEtudeOption.id === editForm.get('filiereEtude')!.value?.id ? editForm.get('filiereEtude')!.value : filiereEtudeOption
+              "
+              *ngFor="let filiereEtudeOption of filiereEtudesSharedCollection; trackBy: trackFiliereEtudeById"
+            >
+              {{ filiereEtudeOption.filiere }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.diplome.serieEtude" for="field_serieEtude">Serie Etude</label>
+          <select class="form-control" id="field_serieEtude" data-cy="serieEtude" name="serieEtude" formControlName="serieEtude">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                serieEtudeOption.id === editForm.get('serieEtude')!.value?.id ? editForm.get('serieEtude')!.value : serieEtudeOption
+              "
+              *ngFor="let serieEtudeOption of serieEtudesSharedCollection; trackBy: trackSerieEtudeById"
+            >
+              {{ serieEtudeOption.serie }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.diplome.niveauEtude" for="field_niveauEtude">Niveau Etude</label>
+          <select class="form-control" id="field_niveauEtude" data-cy="niveauEtude" name="niveauEtude" formControlName="niveauEtude">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                niveauEtudeOption.id === editForm.get('niveauEtude')!.value?.id ? editForm.get('niveauEtude')!.value : niveauEtudeOption
+              "
+              *ngFor="let niveauEtudeOption of niveauEtudesSharedCollection; trackBy: trackNiveauEtudeById"
+            >
+              {{ niveauEtudeOption.niveau }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="PersonnelHeading">
+    <span jhiTranslate="matriculeEfptBdApp.personnel.home.title">Personnel</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="matriculeEfptBdApp.personnel.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-personnel"
+        [routerLink]="['/personnel/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="matriculeEfptBdApp.personnel.home.createLabel"> Create a new Personnel </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="personnel?.length === 0">
+    <span jhiTranslate="matriculeEfptBdApp.personnel.home.notFound">No personnel found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="personnel && personnel.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomPers">
+            <span jhiTranslate="matriculeEfptBdApp.personnel.nomPers">Nom Pers</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="prenomPers">
+            <span jhiTranslate="matriculeEfptBdApp.personnel.prenomPers">Prenom Pers</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="matriculeEfptBdApp.personnel.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="etablissement.nomEtab">
+            <span jhiTranslate="matriculeEfptBdApp.personnel.etablissement">Etablissement</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="inspection.nomInsp">
+            <span jhiTranslate="matriculeEfptBdApp.personnel.inspection">Inspection</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="poste.nomPoste">
+            <span jhiTranslate="matriculeEfptBdApp.personnel.poste">Poste</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let personnel of personnel; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/personnel', personnel.id, 'view']">{{ personnel.id }}</a>
+          </td>
+          <td>{{ personnel.nomPers }}</td>
+          <td>{{ personnel.prenomPers }}</td>
+          <td>{{ personnel.email }}</td>
+          <td>
+            <div *ngIf="personnel.etablissement">
+              <a [routerLink]="['/etablissement', personnel.etablissement?.id, 'view']">{{ personnel.etablissement?.nomEtab }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="personnel.inspection">
+              <a [routerLink]="['/inspection', personnel.inspection?.id, 'view']">{{ personnel.inspection?.nomInsp }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="personnel.poste">
+              <a [routerLink]="['/poste', personnel.poste?.id, 'view']">{{ personnel.poste?.nomPoste }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/personnel', personnel.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/personnel', personnel.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(personnel)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

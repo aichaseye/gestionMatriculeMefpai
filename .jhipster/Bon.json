@@ -1,0 +1,43 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328152625",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "bon",
+  "fields": [
+    {
+      "fieldName": "quantite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Bon",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomEtab",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "bon",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "matriculeMatiere",
+      "otherEntityName": "matiere",
+      "otherEntityRelationshipName": "bon",
+      "relationshipName": "matiere",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

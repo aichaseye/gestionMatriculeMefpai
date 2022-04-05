@@ -1,0 +1,36 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328150525",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "region",
+  "fields": [
+    {
+      "fieldName": "nomReg",
+      "fieldType": "NomRegion",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Dakar,Thies,Saint_Louis,Diourbel,Louga,Fatick,Kaffrine,Kaolack,Matam,Tambacounda,Kedougou,Kolda,Ziguinchor,Sedhiou"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Region",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "departement",
+      "otherEntityRelationshipName": "region",
+      "relationshipName": "departement",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nomPays",
+      "otherEntityName": "pays",
+      "otherEntityRelationshipName": "region",
+      "relationshipName": "pays",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,26 @@
+{
+  "matriculeEfptBdApp": {
+    "serieEtude": {
+      "home": {
+        "title": "Serie Etudes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Serie Etude",
+        "createOrEditLabel": "Create or edit a Serie Etude",
+        "notFound": "No Serie Etudes found"
+      },
+      "created": "A new Serie Etude is created with identifier {{ param }}",
+      "updated": "A Serie Etude is updated with identifier {{ param }}",
+      "deleted": "A Serie Etude is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Serie Etude {{ id }}?"
+      },
+      "detail": {
+        "title": "Serie Etude"
+      },
+      "id": "ID",
+      "serie": "Serie",
+      "diplome": "Diplome",
+      "releveNote": "Releve Note"
+    }
+  }
+}

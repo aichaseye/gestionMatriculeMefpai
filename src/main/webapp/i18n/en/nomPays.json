@@ -1,0 +1,9 @@
+{
+  "matriculeEfptBdApp": {
+    "NomPays": {
+      "null": "",
+      "Senegal": "Senegal",
+      "Autre": "Autre"
+    }
+  }
+}

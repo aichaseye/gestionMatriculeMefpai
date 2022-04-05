@@ -1,0 +1,29 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328150425",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "pays",
+  "fields": [
+    {
+      "fieldName": "nomPays",
+      "fieldType": "NomPays",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Senegal,Autre"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Pays",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "region",
+      "otherEntityRelationshipName": "pays",
+      "relationshipName": "region",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

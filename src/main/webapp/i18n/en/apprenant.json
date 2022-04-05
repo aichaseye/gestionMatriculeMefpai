@@ -1,0 +1,43 @@
+{
+  "matriculeEfptBdApp": {
+    "apprenant": {
+      "home": {
+        "title": "Apprenants",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Apprenant",
+        "createOrEditLabel": "Create or edit a Apprenant",
+        "notFound": "No Apprenants found"
+      },
+      "created": "A new Apprenant is created with identifier {{ param }}",
+      "updated": "A Apprenant is updated with identifier {{ param }}",
+      "deleted": "A Apprenant is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Apprenant {{ id }}?"
+      },
+      "detail": {
+        "title": "Apprenant"
+      },
+      "id": "ID",
+      "nomCompletApp": "Nom Complet App",
+      "email": "Email",
+      "telephone": "Telephone",
+      "dateNaissance": "Date Naissance",
+      "lieuNaissance": "Lieu Naissance",
+      "numActeNaissance": "Num Acte Naissance",
+      "photo": "Photo",
+      "sexe": "Sexe",
+      "adresse": "Adresse",
+      "statut": "Statut",
+      "situationMatrimoniale": "Situation Matrimoniale",
+      "matriculeApp": "Matricule App",
+      "nationalite": "Nationalite",
+      "demandeMatApp": "Demande Mat App",
+      "inscription": "Inscription",
+      "releveNote": "Releve Note",
+      "diplome": "Diplome",
+      "help": {
+        "nomCompletApp": "The firstname attribute."
+      }
+    }
+  }
+}

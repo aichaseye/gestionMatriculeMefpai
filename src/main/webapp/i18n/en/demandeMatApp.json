@@ -1,0 +1,26 @@
+{
+  "matriculeEfptBdApp": {
+    "demandeMatApp": {
+      "home": {
+        "title": "Demande Mat Apps",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Demande Mat App",
+        "createOrEditLabel": "Create or edit a Demande Mat App",
+        "notFound": "No Demande Mat Apps found"
+      },
+      "created": "A new Demande Mat App is created with identifier {{ param }}",
+      "updated": "A Demande Mat App is updated with identifier {{ param }}",
+      "deleted": "A Demande Mat App is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Demande Mat App {{ id }}?"
+      },
+      "detail": {
+        "title": "Demande Mat App"
+      },
+      "id": "ID",
+      "objet": "Objet",
+      "description": "Description",
+      "dateDemande": "Date Demande"
+    }
+  }
+}

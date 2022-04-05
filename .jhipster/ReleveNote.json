@@ -1,0 +1,93 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328152025",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "releve_note",
+  "fields": [
+    {
+      "fieldName": "annee",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "Etat",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "REDOUBLANT (E),PASSANT (E)"
+    },
+    {
+      "fieldName": "apreciation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "moyenne",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "moyenneGenerale",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "rang",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "noteConduite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nomSemestre",
+      "fieldType": "NomSemestre",
+      "fieldValues": "Semestre1,Semestre2,Semestre3"
+    },
+    {
+      "fieldName": "matriculeRel",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ReleveNote",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomCompletApp",
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "releveNote",
+      "relationshipName": "apprenant",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "filiere",
+      "otherEntityName": "filiereEtude",
+      "otherEntityRelationshipName": "releveNote",
+      "relationshipName": "filiereEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "serie",
+      "otherEntityName": "serieEtude",
+      "otherEntityRelationshipName": "releveNote",
+      "relationshipName": "serieEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "niveau",
+      "otherEntityName": "niveauEtude",
+      "otherEntityRelationshipName": "releveNote",
+      "relationshipName": "niveauEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "noteProgramme",
+      "otherEntityRelationshipName": "releveNote",
+      "ownerSide": false,
+      "relationshipName": "noteProgramme",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

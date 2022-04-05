@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Departement.
+    -->
+    <changeSet id="20220328150625-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="region_id"
+                                 baseTableName="departement"
+                                 constraintName="fk_departement__region_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="region"/>
+    </changeSet>
+</databaseChangeLog>

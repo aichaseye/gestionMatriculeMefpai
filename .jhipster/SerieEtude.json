@@ -1,0 +1,35 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328151825",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "serie_etude",
+  "fields": [
+    {
+      "fieldName": "serie",
+      "fieldType": "Serie",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "STEG,STIDD_E,STIDD_M,S3,S4,S5,F6"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SerieEtude",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "diplome",
+      "otherEntityRelationshipName": "serieEtude",
+      "relationshipName": "diplome",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "releveNote",
+      "otherEntityRelationshipName": "serieEtude",
+      "relationshipName": "releveNote",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

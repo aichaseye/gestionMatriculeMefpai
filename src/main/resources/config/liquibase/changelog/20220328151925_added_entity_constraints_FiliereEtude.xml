@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity FiliereEtude.
+    -->
+    <changeSet id="20220328151925-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="diplome_id"
+                                 baseTableName="filiere_etude"
+                                 constraintName="fk_filiere_etude__diplome_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="diplome"/>
+
+        <addForeignKeyConstraint baseColumnNames="releve_note_id"
+                                 baseTableName="filiere_etude"
+                                 constraintName="fk_filiere_etude__releve_note_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="releve_note"/>
+    </changeSet>
+</databaseChangeLog>

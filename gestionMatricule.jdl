@@ -1,0 +1,323 @@
+application {
+  config {
+    baseName matricule_EFPT_bd,
+    applicationType monolith,
+    packageName sn.seye.gesmat.mefpai,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    devDatabaseType mysql,
+    databaseType sql,
+    clientFramework angularX,
+    buildTool maven,
+    languages [fr,en],
+    nativeLanguage fr,
+	serverPort 8081
+  }
+  
+  entities *
+}
+entity Pays {
+	nomPays NomPays required
+}
+
+enum NomPays {
+	Senegal, Autre 
+}
+entity Region {
+	nomReg NomRegion required
+}
+
+enum NomRegion {
+Dakar, Thies, Saint_Louis, Diourbel, Louga, Fatick, Kaffrine, 
+Kaolack, Matam, Tambacounda, Kedougou, Kolda, Ziguinchor, Sedhiou
+}
+
+entity Departement {
+	nomDep NomDep required
+}
+enum NomDep{
+Dakar, Pikine, Rufisque, Guediawaye, Keur_Massar,
+Thies, Mbour, Tivaoune,
+Saint_Louis, Dagana, Podor,
+Diourbel, Mbacke, Bambey,
+Louga, Linguere, Kebemer,
+Fatick, Foundiougne, Gossas,
+Kaffrine, Birkelane, Koungheul, Malem_Hodar,
+Kaolack, Guinguineo, Nioro_du_Rip,
+Matam, Kanel, Ranerou,
+Tambacounda, Bakel, Goudiry, Koumpentoum,
+Kedougou, Salemata, Saraya,
+Kolda, Velingara, Medina_Yoro_Foulah,
+Sedhiou, Bounkiling, Goudomp,
+Ziguinchor, Bignona, Oussouye
+}
+
+entity Commune {
+	nomCom String required
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Inspection {
+	nomInsp String required,
+	typeInsp TypeInspection required,
+	latitude Long,
+	longitude Long
+}
+enum TypeInspection {
+	IA, IEF  
+}
+
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity Etablissement {
+	
+	  nomEtab String required ,
+	  typeEtab TypeEtab required,
+	  statut StatutEtab,
+	  latitude Long,
+	  longitude Long,
+	  matriculeEtab String
+}
+
+enum TypeEtab {
+	LyceeTechnique, CFP  
+}
+enum StatutEtab {
+	Prive, Publique  
+}
+
+/**
+ * The Employee entity.
+ */
+entity Apprenant {
+	/**
+	* The firstname attribute.
+	*/
+	nomCompletApp String  required,
+    @unique
+  	@email
+	email String required ,
+    @unique
+	telephone String required ,
+	dateNaissance LocalDate,
+	lieuNaissance String,
+    numActeNaissance Integer
+	photo ImageBlob ,
+    sexe Sexe    required,
+    adresse String required,
+    statut StatutApp,
+    situationMatrimoniale String,
+    matriculeApp String ,
+    nationalite String  required
+    
+}
+
+enum StatutApp {
+	Prive, Publique  
+}
+
+enum Sexe {
+	Masclin, Feminin  
+}
+entity Inscription {
+	
+	anneeIns LocalDate required,
+	
+}
+
+entity Personnel {
+	/**
+	* The firstname attribute.
+	*/
+	nomPers String required,
+	prenomPers String required,
+    @unique
+    @email
+	email String required ,
+    
+}
+
+entity Poste {
+    nomPoste NomPoste required
+}
+
+enum NomPoste {
+    Comptable_matiere, Proviseur, 
+    Chef_traveaux, BEFPA, Admin, Directeur,
+    Surveillant
+}
+entity Classe {
+    nomClasse String required
+}
+
+
+entity CarteScolaire {
+ 	longuer Integer required  ,
+    largeur Integer required ,
+    dureeValidite Integer ,
+    dateCreation LocalDate ,
+    dateFin LocalDate,
+    matriculeCart String 
+    
+}
+
+entity Diplome {
+    nom NomDiplome required,
+    matriculeDiplome String required,
+    annee LocalDate
+    
+}
+
+entity NiveauEtude {
+    niveau Niveau required
+}
+
+entity SerieEtude {
+    serie Serie required
+}
+entity FiliereEtude {
+    filiere Filiere required
+}
+enum Serie {
+	STEG, STIDD_E, STIDD_M, S3, S4, S5 , F6
+}
+enum Filiere {
+	Agricultre, Peche, Elevage, Mine_Cariere,
+    Artisanat, Batiment_TraveauxPublics,
+    Mecanique, MenuiserieBois, Habillement,
+    Agroalimentaire, Electronique,
+    Electrotechnique, Energetique, Hydrolique,
+    Structure_Metallique, Structure_Plastique,
+    Beaute_Esthetique, Developpement_Territorial,
+    Droit, Economie_et_gestionLogistique,
+    Industrie_cultirelle_et_creative ,
+    Informatique_et_numerique, Restauration_Htellerie,
+    Sante, Biologie_chimie, Sport, Tourisme, Environnement
+}
+
+enum NomDiplome {
+	CAP, BTS , BT , CPS, BEP, CQP, TS,
+    METP, BTI, TitreProfessionnel, CAEP
+}
+
+enum Niveau {
+	CAP1, CAP2, CAP3, BTS1, BTS2, BT1, BT2, BT3 , CPS, BEP1, BEP2, BEP3, CQP,
+    ChefEquipe, ChefChantier, TechnicienSpecialise,
+    METP, BTI, TitreProfessionnel
+}
+
+enum Etat {
+	REDOUBLANT(E), PASSANT(E)
+    
+}
+
+entity ReleveNote {
+    annee LocalDate required,
+    etat Etat required,
+    apreciation String,
+    moyenne Float required,
+    moyenneGenerale Float,
+    rang String,
+    noteConduite Integer,
+    nomSemestre NomSemestre,
+    matriculeRel String 
+}
+ 
+ 
+enum NomSemestre {
+	Semestre1, Semestre2, Semestre3
+    
+}
+entity NoteProgramme {
+	nomProg String,
+    coef Integer,
+    note Float
+}
+
+
+entity DemandeMatApp {
+	objet String,
+    description String,
+    dateDemande LocalDate
+}
+entity DemandeMatEtab {
+	objet String,
+    description String,
+    dateDemande LocalDate
+}
+entity Matiere {
+	nomMatiere String,
+	reference String,
+	typeMatiere String,
+    matriculeMatiere String
+}
+entity Image {
+	
+    url String
+}
+
+entity Bon {
+	quantite Integer,
+	date LocalDate,
+    description String
+	
+}
+
+
+
+relationship OneToMany {
+	Pays to Region{Pays(nomPays)}
+    Region to Departement{Region(nomReg)}
+    Departement to Commune{Departement(nomDep)}
+    Commune to Inspection{Commune(nomCom)}
+    Commune to Etablissement {Commune(nomCom)}
+    Etablissement to Bon{Etablissement(nomEtab)}
+	Etablissement to Personnel{Etablissement(nomEtab)}
+	Etablissement to Classe{Etablissement(nomEtab)}
+	Apprenant to Inscription{Apprenant(nomCompletApp)}
+	Classe to Inscription{Classe(nomClasse)}
+    Inspection to Personnel{Inspection(nomInsp)}
+	Matiere to Bon{Matiere(matriculeMatiere)}
+	Matiere to Image{Matiere(nomMatiere)}
+    Inspection to Etablissement{Inspection(nomInsp)}
+     Apprenant to ReleveNote{Apprenant(nomCompletApp)}
+	 Apprenant to Diplome{Apprenant(nomCompletApp)}
+	 FiliereEtude to Diplome{FiliereEtude(filiere)}
+     SerieEtude to Diplome{SerieEtude(serie)}
+	 NiveauEtude to Diplome{NiveauEtude(niveau)}
+	 FiliereEtude to ReleveNote{FiliereEtude(filiere)}
+     SerieEtude  to ReleveNote{SerieEtude(serie)}
+	 NiveauEtude to ReleveNote{NiveauEtude(niveau)}
+     Poste to Personnel{Poste(nomPoste)}
+	
+}
+
+relationship OneToOne {
+	DemandeMatEtab{Etablissement(nomEtab)} to Etablissement
+	Apprenant{DemandeMatApp(dateDemande)} to  DemandeMatApp
+	CarteScolaire{Apprenant(nomCompletApp)} to Apprenant 
+
+}
+
+relationship ManyToMany {
+	NoteProgramme{ReleveNote(moyenne)} to ReleveNote{NoteProgramme}
+}
+
+
+
+// Set pagination options
+paginate * with infinite-scroll
+//paginate Job with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

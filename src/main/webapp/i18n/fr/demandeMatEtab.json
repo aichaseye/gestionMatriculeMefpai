@@ -1,0 +1,27 @@
+{
+  "matriculeEfptBdApp": {
+    "demandeMatEtab": {
+      "home": {
+        "title": "DemandeMatEtabs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Demande Mat Etab",
+        "createOrEditLabel": "Créer ou éditer un Demande Mat Etab",
+        "notFound": "Aucun Demande Mat Etab trouvé"
+      },
+      "created": "Un nouveau Demande Mat Etab a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Demande Mat Etab avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Demande Mat Etab avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Demande Mat Etab {{ id }} ?"
+      },
+      "detail": {
+        "title": "Demande Mat Etab"
+      },
+      "id": "ID",
+      "objet": "Objet",
+      "description": "Description",
+      "dateDemande": "Date Demande",
+      "etablissement": "Etablissement"
+    }
+  }
+}

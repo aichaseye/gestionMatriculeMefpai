@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="image">
+      <h2 data-cy="imageDetailsHeading"><span jhiTranslate="matriculeEfptBdApp.image.detail.title">Image</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ image.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.image.url">Url</span></dt>
+        <dd>
+          <span>{{ image.url }}</span>
+        </dd>
+        <dt><span jhiTranslate="matriculeEfptBdApp.image.matiere">Matiere</span></dt>
+        <dd>
+          <div *ngIf="image.matiere">
+            <a [routerLink]="['/matiere', image.matiere?.id, 'view']">{{ image.matiere?.nomMatiere }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/image', image.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-region-heading" data-cy="RegionCreateUpdateHeading" jhiTranslate="matriculeEfptBdApp.region.home.createOrEditLabel">
+        Create or edit a Region
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.region.nomReg" for="field_nomReg">Nom Reg</label>
+          <select class="form-control" name="nomReg" formControlName="nomReg" id="field_nomReg" data-cy="nomReg">
+            <option [ngValue]="null">{{ 'matriculeEfptBdApp.NomRegion.null' | translate }}</option>
+            <option *ngFor="let nomRegion of nomRegionValues" [value]="nomRegion">
+              {{ 'matriculeEfptBdApp.NomRegion.' + nomRegion | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('nomReg')!.invalid && (editForm.get('nomReg')!.dirty || editForm.get('nomReg')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomReg')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.region.pays" for="field_pays">Pays</label>
+          <select class="form-control" id="field_pays" data-cy="pays" name="pays" formControlName="pays">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="paysOption.id === editForm.get('pays')!.value?.id ? editForm.get('pays')!.value : paysOption"
+              *ngFor="let paysOption of paysSharedCollection; trackBy: trackPaysById"
+            >
+              {{ paysOption.nomPays }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

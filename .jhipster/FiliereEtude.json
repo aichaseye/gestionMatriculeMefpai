@@ -1,0 +1,35 @@
+{
+  "applications": ["matricule_EFPT_bd"],
+  "changelogDate": "20220328151925",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "filiere_etude",
+  "fields": [
+    {
+      "fieldName": "filiere",
+      "fieldType": "Filiere",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Agricultre,Peche,Elevage,Mine_Cariere,Artisanat,Batiment_TraveauxPublics,Mecanique,MenuiserieBois,Habillement,Agroalimentaire,Electronique,Electrotechnique,Energetique,Hydrolique,Structure_Metallique,Structure_Plastique,Beaute_Esthetique,Developpement_Territorial,Droit,Economie_et_gestionLogistique,Industrie_cultirelle_et_creative,Informatique_et_numerique,Restauration_Htellerie,Sante,Biologie_chimie,Sport,Tourisme,Environnement"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FiliereEtude",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "diplome",
+      "otherEntityRelationshipName": "filiereEtude",
+      "relationshipName": "diplome",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "releveNote",
+      "otherEntityRelationshipName": "filiereEtude",
+      "relationshipName": "releveNote",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

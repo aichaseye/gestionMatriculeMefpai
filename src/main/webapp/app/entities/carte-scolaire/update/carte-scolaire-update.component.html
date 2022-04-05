@@ -1,0 +1,159 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-carte-scolaire-heading"
+        data-cy="CarteScolaireCreateUpdateHeading"
+        jhiTranslate="matriculeEfptBdApp.carteScolaire.home.createOrEditLabel"
+      >
+        Create or edit a Carte Scolaire
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.carteScolaire.longuer" for="field_longuer">Longuer</label>
+          <input type="number" class="form-control" name="longuer" id="field_longuer" data-cy="longuer" formControlName="longuer" />
+          <div *ngIf="editForm.get('longuer')!.invalid && (editForm.get('longuer')!.dirty || editForm.get('longuer')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('longuer')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('longuer')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.carteScolaire.largeur" for="field_largeur">Largeur</label>
+          <input type="number" class="form-control" name="largeur" id="field_largeur" data-cy="largeur" formControlName="largeur" />
+          <div *ngIf="editForm.get('largeur')!.invalid && (editForm.get('largeur')!.dirty || editForm.get('largeur')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('largeur')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('largeur')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.carteScolaire.dureeValidite" for="field_dureeValidite"
+            >Duree Validite</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="dureeValidite"
+            id="field_dureeValidite"
+            data-cy="dureeValidite"
+            formControlName="dureeValidite"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.carteScolaire.dateCreation" for="field_dateCreation"
+            >Date Creation</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateCreation"
+              data-cy="dateCreation"
+              type="text"
+              class="form-control"
+              name="dateCreation"
+              ngbDatepicker
+              #dateCreationDp="ngbDatepicker"
+              formControlName="dateCreation"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateCreationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.carteScolaire.dateFin" for="field_dateFin">Date Fin</label>
+          <div class="input-group">
+            <input
+              id="field_dateFin"
+              data-cy="dateFin"
+              type="text"
+              class="form-control"
+              name="dateFin"
+              ngbDatepicker
+              #dateFinDp="ngbDatepicker"
+              formControlName="dateFin"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.carteScolaire.matriculeCart" for="field_matriculeCart"
+            >Matricule Cart</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeCart"
+            id="field_matriculeCart"
+            data-cy="matriculeCart"
+            formControlName="matriculeCart"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.carteScolaire.apprenant" for="field_apprenant">Apprenant</label>
+          <select class="form-control" id="field_apprenant" data-cy="apprenant" name="apprenant" formControlName="apprenant">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="apprenantOption.id === editForm.get('apprenant')!.value?.id ? editForm.get('apprenant')!.value : apprenantOption"
+              *ngFor="let apprenantOption of apprenantsCollection; trackBy: trackApprenantById"
+            >
+              {{ apprenantOption.nomCompletApp }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

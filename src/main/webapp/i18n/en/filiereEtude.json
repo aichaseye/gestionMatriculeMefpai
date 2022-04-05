@@ -1,0 +1,26 @@
+{
+  "matriculeEfptBdApp": {
+    "filiereEtude": {
+      "home": {
+        "title": "Filiere Etudes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Filiere Etude",
+        "createOrEditLabel": "Create or edit a Filiere Etude",
+        "notFound": "No Filiere Etudes found"
+      },
+      "created": "A new Filiere Etude is created with identifier {{ param }}",
+      "updated": "A Filiere Etude is updated with identifier {{ param }}",
+      "deleted": "A Filiere Etude is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Filiere Etude {{ id }}?"
+      },
+      "detail": {
+        "title": "Filiere Etude"
+      },
+      "id": "ID",
+      "filiere": "Filiere",
+      "diplome": "Diplome",
+      "releveNote": "Releve Note"
+    }
+  }
+}

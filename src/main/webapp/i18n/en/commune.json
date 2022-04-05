@@ -1,0 +1,27 @@
+{
+  "matriculeEfptBdApp": {
+    "commune": {
+      "home": {
+        "title": "Communes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Commune",
+        "createOrEditLabel": "Create or edit a Commune",
+        "notFound": "No Communes found"
+      },
+      "created": "A new Commune is created with identifier {{ param }}",
+      "updated": "A Commune is updated with identifier {{ param }}",
+      "deleted": "A Commune is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Commune {{ id }}?"
+      },
+      "detail": {
+        "title": "Commune"
+      },
+      "id": "ID",
+      "nomCom": "Nom Com",
+      "inspection": "Inspection",
+      "etablissement": "Etablissement",
+      "departement": "Departement"
+    }
+  }
+}

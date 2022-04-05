@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-inspection-heading"
+        data-cy="InspectionCreateUpdateHeading"
+        jhiTranslate="matriculeEfptBdApp.inspection.home.createOrEditLabel"
+      >
+        Create or edit a Inspection
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.inspection.nomInsp" for="field_nomInsp">Nom Insp</label>
+          <input type="text" class="form-control" name="nomInsp" id="field_nomInsp" data-cy="nomInsp" formControlName="nomInsp" />
+          <div *ngIf="editForm.get('nomInsp')!.invalid && (editForm.get('nomInsp')!.dirty || editForm.get('nomInsp')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomInsp')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.inspection.typeInsp" for="field_typeInsp">Type Insp</label>
+          <select class="form-control" name="typeInsp" formControlName="typeInsp" id="field_typeInsp" data-cy="typeInsp">
+            <option [ngValue]="null">{{ 'matriculeEfptBdApp.TypeInspection.null' | translate }}</option>
+            <option *ngFor="let typeInspection of typeInspectionValues" [value]="typeInspection">
+              {{ 'matriculeEfptBdApp.TypeInspection.' + typeInspection | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('typeInsp')!.invalid && (editForm.get('typeInsp')!.dirty || editForm.get('typeInsp')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('typeInsp')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.inspection.latitude" for="field_latitude">Latitude</label>
+          <input type="number" class="form-control" name="latitude" id="field_latitude" data-cy="latitude" formControlName="latitude" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.inspection.longitude" for="field_longitude">Longitude</label>
+          <input type="number" class="form-control" name="longitude" id="field_longitude" data-cy="longitude" formControlName="longitude" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="matriculeEfptBdApp.inspection.commune" for="field_commune">Commune</label>
+          <select class="form-control" id="field_commune" data-cy="commune" name="commune" formControlName="commune">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="communeOption.id === editForm.get('commune')!.value?.id ? editForm.get('commune')!.value : communeOption"
+              *ngFor="let communeOption of communesSharedCollection; trackBy: trackCommuneById"
+            >
+              {{ communeOption.nomCom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

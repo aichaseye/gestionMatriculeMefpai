@@ -1,0 +1,108 @@
+<div>
+  <h2 id="page-heading" data-cy="CarteScolaireHeading">
+    <span jhiTranslate="matriculeEfptBdApp.carteScolaire.home.title">Carte Scolaires</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="matriculeEfptBdApp.carteScolaire.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-carte-scolaire"
+        [routerLink]="['/carte-scolaire/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="matriculeEfptBdApp.carteScolaire.home.createLabel"> Create a new Carte Scolaire </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="carteScolaires?.length === 0">
+    <span jhiTranslate="matriculeEfptBdApp.carteScolaire.home.notFound">No carteScolaires found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="carteScolaires && carteScolaires.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="longuer">
+            <span jhiTranslate="matriculeEfptBdApp.carteScolaire.longuer">Longuer</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="largeur">
+            <span jhiTranslate="matriculeEfptBdApp.carteScolaire.largeur">Largeur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dureeValidite">
+            <span jhiTranslate="matriculeEfptBdApp.carteScolaire.dureeValidite">Duree Validite</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateCreation">
+            <span jhiTranslate="matriculeEfptBdApp.carteScolaire.dateCreation">Date Creation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateFin">
+            <span jhiTranslate="matriculeEfptBdApp.carteScolaire.dateFin">Date Fin</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="matriculeCart">
+            <span jhiTranslate="matriculeEfptBdApp.carteScolaire.matriculeCart">Matricule Cart</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="apprenant.nomCompletApp">
+            <span jhiTranslate="matriculeEfptBdApp.carteScolaire.apprenant">Apprenant</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let carteScolaire of carteScolaires; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/carte-scolaire', carteScolaire.id, 'view']">{{ carteScolaire.id }}</a>
+          </td>
+          <td>{{ carteScolaire.longuer }}</td>
+          <td>{{ carteScolaire.largeur }}</td>
+          <td>{{ carteScolaire.dureeValidite }}</td>
+          <td>{{ carteScolaire.dateCreation | formatMediumDate }}</td>
+          <td>{{ carteScolaire.dateFin | formatMediumDate }}</td>
+          <td>{{ carteScolaire.matriculeCart }}</td>
+          <td>
+            <div *ngIf="carteScolaire.apprenant">
+              <a [routerLink]="['/apprenant', carteScolaire.apprenant?.id, 'view']">{{ carteScolaire.apprenant?.nomCompletApp }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/carte-scolaire', carteScolaire.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/carte-scolaire', carteScolaire.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(carteScolaire)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

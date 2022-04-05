@@ -1,0 +1,25 @@
+{
+  "matriculeEfptBdApp": {
+    "poste": {
+      "home": {
+        "title": "Postes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Poste",
+        "createOrEditLabel": "Create or edit a Poste",
+        "notFound": "No Postes found"
+      },
+      "created": "A new Poste is created with identifier {{ param }}",
+      "updated": "A Poste is updated with identifier {{ param }}",
+      "deleted": "A Poste is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Poste {{ id }}?"
+      },
+      "detail": {
+        "title": "Poste"
+      },
+      "id": "ID",
+      "nomPoste": "Nom Poste",
+      "personnel": "Personnel"
+    }
+  }
+}
